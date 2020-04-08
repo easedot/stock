@@ -2,9 +2,10 @@ package alphavantage
 
 import (
 	"fmt"
-	"github.com/SimpleApplicationsOrg/stock/client"
 	"os"
 	"time"
+
+	"github.com/SimpleApplicationsOrg/stock/client"
 )
 
 const (

@@ -2,10 +2,12 @@ package alphavantage_test
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/SimpleApplicationsOrg/stock/alphavantage"
 )
 
-func Example() {
+func TestIntraday(t *testing.T) {
 	avClient, err := alphavantage.NewAVClient()
 	if err != nil {
 		fmt.Printf("error getting client: %s", err.Error())
@@ -25,7 +27,7 @@ func Example() {
 
 	timeSeries := *response.TimeSeries
 	for _, timeStamp := range timeSeries.TimeStamps() {
-		value := (timeSeries)[timeStamp]
+		value := timeSeries[timeStamp]
 		fmt.Println(timeStamp, value.Open(), value.High(), value.Low(), value.Close(), value.Volume())
 	}
 }

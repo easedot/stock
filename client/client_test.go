@@ -2,7 +2,6 @@ package client_test
 
 import (
 	"fmt"
-	"github.com/SimpleApplicationsOrg/stock/client"
 	"net/http"
 	"net/http/httptest"
 	"strings"
