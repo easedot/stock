@@ -19,10 +19,13 @@ type AVClient struct {
 }
 
 // NewAVClient gives a specific Alpha Vantage API client
-func NewAVClient() (*AVClient, error) {
+func NewAVClient(cfg map[string]string) (*AVClient, error) {
 	config, err := configuration()
 	if err != nil {
 		return nil, err
+	}
+	for k,v:=range cfg{
+		config.AddKey(k,v)
 	}
 	client := client.NewClient(config)
 	return &AVClient{client}, nil
