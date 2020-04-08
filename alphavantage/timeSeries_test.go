@@ -8,6 +8,8 @@ import (
 	"os"
 	"path"
 	"testing"
+
+	"github.com/SimpleApplicationsOrg/stock/alphavantage"
 )
 
 func response() string {
@@ -21,9 +23,9 @@ func response() string {
 }
 
 func testConfiguration(url string) {
-	os.Setenv(envURL, url)
-	os.Setenv(envKeyName, "apiKey")
-	os.Setenv(envKeyValue, "testKey")
+	os.Setenv("ALPHA_VANTAGE_URL", url)
+	os.Setenv("ALPHA_VANTAGE_KEY_NAME", "apiKey")
+	os.Setenv("ALPHA_VANTAGE_KEY_VALUE", "N2KPK5MO9BBWMHAW")
 }
 
 func buildTestServer() *httptest.Server {
@@ -34,12 +36,12 @@ func buildTestServer() *httptest.Server {
 	return ts
 }
 
-func call() (*TimeSeriesData, error) {
+func call() (*alphavantage.TimeSeriesData, error) {
 	ts := buildTestServer()
 	defer ts.Close()
 	testConfiguration(ts.URL)
 
-	avClient, err := NewAVClient()
+	avClient, err := alphavantage.NewAVClient()
 	if err != nil {
 		return nil, err
 	}
